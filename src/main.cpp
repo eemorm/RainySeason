@@ -1,5 +1,5 @@
 //Custom Includes
-#include "plant.hpp"
+#include "Classes/Plants/Plant.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -12,25 +12,28 @@
 #include <iostream>
 #include <optional>
 
+// Screen Constants
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close); // declare window
+
     while (window.isOpen())
     {
         sf::Event event;
         
-        while (window.pollEvent(event))
+        while (window.pollEvent(event)) // check if window events pressed, i.e. close window
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) // check if window close pressed
             {
                 window.close();
             }      
         }
-        window.clear(sf::Color(127, 127, 127));
-        window.display();
+
+        window.clear(sf::Color(127, 127, 127)); // turn window to grey
+        window.display(); // display output
     }
     return 0;
 }
