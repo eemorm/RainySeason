@@ -45,6 +45,6 @@ int main()
         player.render(window); // render player on window
         window.display(); // display output
     }
-    
+
     return 0;
 }
