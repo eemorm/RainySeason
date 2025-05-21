@@ -1,13 +1,6 @@
 // Custom Includes
 #include "Plant.hpp"
 
-// SFML
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-
 // Standard Output
 #include <iostream>
 #include <string>
@@ -40,7 +33,7 @@ class Carrot : Plant // defines the Carrot class
             if (stage != Stage::Dying) // check if the plant is not dying
             {
                 int currentStageValue = static_cast<int>(stage);
-                
+
                 if (getGrowthDay() >= currentStageValue + 1) // check if passed next requirement and update stage
                 {
                     stage = static_cast<Stage>(currentStageValue + 1);

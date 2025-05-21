@@ -12,7 +12,7 @@
 class Plant // defines the plant class
 {
     private:
-        sf::Sprite sprite;
+        sf::Sprite sprite; // current sprite of the plant
         std::string type; // type of plant, such as carrot, potato, etc.
         int daysToGrow; // days the plant takes to grow
         int growthStage = 0; // stage of growth that the plant is on, i.e. daysToGrow - growthStage = days left until harvest
