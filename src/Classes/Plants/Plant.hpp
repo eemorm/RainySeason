@@ -30,8 +30,8 @@ class Plant // defines the plant class
         void setType(std::string t) { type = t; }                          // are
         int getDaysToGrow() { return daysToGrow; }                         // getters
         void setDaysToGrow(int dtg) { daysToGrow = dtg; }                  // and
-        int getGrowthStage() { return growthStage; }                       // setters
-        void setGrowthStage(int gs) { growthStage = gs; }
+        int getGrowthDay() { return growthStage; }                         // setters
+        void setGrowthDay(int gd) { growthStage = gd; }
         int getWaterAmountNeeded() { return waterAmountNeeded; }
         void setWaterAmountNeeded(int wan) { waterAmountNeeded = wan; }
         int getWaterLevel() { return waterLevel; }
@@ -45,8 +45,8 @@ class Plant // defines the plant class
         {
             if (isHarvestable) // check if harvestable
             {
-                growthStage = 0;
-                isHarvestable = false;
+                growthStage = 0;          // reset
+                isHarvestable = false;    // values
             }
         }
 };
