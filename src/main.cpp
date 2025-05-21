@@ -20,9 +20,9 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close); // declare window
 
-    while (window.isOpen())
+    while (window.isOpen()) // loop when the window is open
     {
-        sf::Event event;
+        sf::Event event; // declare an event for when an event happens
         
         while (window.pollEvent(event)) // check if window events pressed, i.e. close window
         {
