@@ -1,5 +1,5 @@
 //Custom Includes
-#include "Classes/Plants/Plant.hpp"
+#include "Classes/Player/Player.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -20,6 +20,10 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close); // declare window
 
+    sf::Clock clock; // declare for delta time
+
+    Player player; // declare player class instance
+
     while (window.isOpen()) // loop when the window is open
     {
         sf::Event event; // declare an event for when an event happens
@@ -32,8 +36,15 @@ int main()
             }      
         }
 
+        float deltaTime = clock.restart().asSeconds();
+
+        player.handleInput(); // handle input
+        player.update(deltaTime); // update player location each frame
+
         window.clear(sf::Color(127, 127, 127)); // turn window to grey
+        player.render(window); // render player on window
         window.display(); // display output
     }
+    
     return 0;
 }
