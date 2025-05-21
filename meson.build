@@ -5,9 +5,9 @@ project('RainySeason', 'cpp',
 cpp = meson.get_compiler('cpp')
 
 if host_machine.system() == 'windows'
-  sfml_graphics = cpp.find_library('sfml-graphics', dirs : 'libs')
-  sfml_window = cpp.find_library('sfml-window', dirs : 'libs')
-  sfml_system = cpp.find_library('sfml-system', dirs : 'libs')
+  sfml_graphics = cpp.find_library('sfml-graphics', dirs : ['libs'], required : true)
+  sfml_window = cpp.find_library('sfml-window', dirs : ['libs'], required : true)
+  sfml_system = cpp.find_library('sfml-system', dirs : ['libs'], required : true)
   sfml_deps = [sfml_graphics, sfml_window, sfml_system]
 else
   sfml_dep = dependency('sfml', method : 'pkg-config')
