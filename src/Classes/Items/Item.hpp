@@ -34,7 +34,7 @@ class Item //defining the class Item
         sf::Sprite getSprite() {return sprite;}
         void setSprite(sf::Sprite s) {sprite = s;}
         std::string getName() {return name;}
-        void setName(std:string n) {name = n;}
+        void setName(std::string n) {name = n;}
         std::string getCategory() {return category;}
         void setCategory(std::string c) {category = c;}
         std::string getDescription() {return description;}
@@ -53,4 +53,4 @@ class Item //defining the class Item
         void setIsTradable(bool it) {isTradable = it;}
         std::string getTradeReward() {return tradeReward;}
         void setTradeReward(std::string tr) {tradeReward = tr;}
-}
+};
