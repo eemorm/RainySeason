@@ -14,7 +14,7 @@
 class Item //defining the class Item
 {
     private:
-        sf:Sprite sprite; //sprite of the item
+        sf::Sprite sprite; //sprite of the item
         std::string name; //name of the item
         std::string category; //i.e., food, tool, furniture, etc.
         std::string description; //description can be displayed in-game
@@ -32,7 +32,7 @@ class Item //defining the class Item
 
         //all of the following are setters and getters
         sf::Sprite getSprite() {return sprite;}
-        void setSprite(sf:Sprite s) {sprite = s;}
+        void setSprite(sf::Sprite s) {sprite = s;}
         std::string getName() {return name;}
         void setName(std:string n) {name = n;}
         std::string getCategory() {return category;}
