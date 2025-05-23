@@ -42,7 +42,7 @@ class Item //defining the class Item
         std::string getRarity() {return rarity;}
         void setRarity(std::string r) {rarity = r;}
         bool getIsStackable() {return isStackable;}
-        void setIsStackable(bool istk) {isStackable = is;}
+        void setIsStackable(bool istk) {isStackable = istk;}
         int getMaxStackable() {return maxStackable;}
         void setMaxStackable(int ms) {maxStackable = ms;}
         bool getIsSellable() {return isSellable;}
