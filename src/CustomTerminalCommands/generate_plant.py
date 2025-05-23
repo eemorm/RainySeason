@@ -55,7 +55,8 @@ def main():
     grown_stage = stages[-1][0]
     grown_stage_value = stages[-1][1] if stages[-1][1] else "6"
 
-    content = f"""// Custom Includes
+    content = f"""#pragma once
+// Custom Includes
 #include "Plant.hpp"
 
 // Standard Output

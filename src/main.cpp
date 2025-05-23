@@ -1,4 +1,5 @@
 //Custom Includes
+#include "Classes/Tileson/MapLoader.hpp"
 #include "Classes/Player/Player.hpp"
 
 // SFML
@@ -24,6 +25,19 @@ int main()
 
     Player player; // declare player class instance
 
+    MapLoader loader; // declare an instance of the map loader
+
+    if (loader.loadMap("tiles/ground.tmx"))                                                       // attempt
+    {                                                                                             // to
+        std::cout << "Map loaded successfully!" << std::endl;                                     // load
+        auto map = loader.getMap();
+        std::cout << "Map size: " << map->getSize().x << "x" << map->getSize().y << std::endl;
+    }
+    else 
+    {
+        std::cerr << "Failed to load map." << std::endl;
+    }
+
     while (window.isOpen()) // loop when the window is open
     {
         sf::Event event; // declare an event for when an event happens
@@ -32,7 +46,7 @@ int main()
         {
             if (event.type == sf::Event::Closed) // check if window close pressed
             {
-                window.close();
+                window.close(); // close window
             }      
         }
 

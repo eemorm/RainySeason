@@ -1,3 +1,5 @@
+#pragma once
+
 // SFML
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -31,6 +33,7 @@ class Player // player class
             sprite.setPosition(100.f, 100.f);
         } // constructor
         ~Player() {} // deconstructor
+        // ********************
         void handleInput() 
         {
             velocity = {0.f, 0.f}; // set initial velocity
