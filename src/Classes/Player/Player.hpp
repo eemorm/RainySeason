@@ -30,10 +30,14 @@ class Player // player class
 
             sprite.setTexture(texture);
             sprite.setScale(32.f, 32.f); // Make it 32x32
-            sprite.setPosition(100.f, 100.f);
+            sprite.setPosition(0.f, 0.f);
         } // constructor
         ~Player() {} // deconstructor
         // ********************
+        sf::Vector2f getPosition()
+        {
+            return sprite.getPosition();
+        }
         void handleInput() 
         {
             velocity = {0.f, 0.f}; // set initial velocity

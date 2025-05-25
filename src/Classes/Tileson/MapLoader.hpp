@@ -4,27 +4,37 @@
 #include "src/Classes/Tileson/tileson.hpp"
 
 // Standard Output
-#include <memory>
+#include <iostream>
 #include <string>
 
 class MapLoader // map loader class
 {
     private:
         std::unique_ptr<tson::Tileson> t_parser;
-        std::shared_ptr<tson::Map> t_map;
+        std::unique_ptr<tson::Map> t_map; // now a unique_ptr
+
     public:
-        MapLoader() // contructor
+        MapLoader() // constructor
         {
             t_parser = std::make_unique<tson::Tileson>();
         }
-        // ********************// function that returns true if map is loaded and false if not
-        bool loadMap(const std::string &path) 
+
+        // Function that returns true if map is loaded successfully
+        bool loadMap(const std::string &path)
         {
             t_map = t_parser->parse(path);
+
+            if (!t_map || t_map->getStatus() != tson::ParseStatus::OK)
+            {
+                std::cerr << "Map parsing failed: " << (t_map ? t_map->getStatusMessage() : "null map") << "\n";
+                return false;
+            }
+
             return !t_map->getTilesets().empty();
         }
-        std::shared_ptr<tson::Map> getMap() const // returns the map I believe
+        // Returns a reference to the map
+        tson::Map* getMap()
         {
-            return t_map;
+            return t_map.get();
         }
 };
