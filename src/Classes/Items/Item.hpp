@@ -25,6 +25,7 @@ class Item //defining the class Item
         int sellPrice; //price if it can be sold
         bool isTradable; //whether it can be traded
         std::string tradeReward; //what you get in return for trading
+        int currentStack = 0; //amount of said item currently held
     //****we might not end up implementing isSellable or isTradable!****
     public:
         Item() {} //constructer?
@@ -53,4 +54,6 @@ class Item //defining the class Item
         void setIsTradable(bool it) {isTradable = it;}
         std::string getTradeReward() {return tradeReward;}
         void setTradeReward(std::string tr) {tradeReward = tr;}
+        int getCurrentStack() {return currentStack;}
+        void setCurrentStack(int cs) {currentStack = cs;} 
 };
