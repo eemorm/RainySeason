@@ -1,6 +1,6 @@
 #pragma once
 
-//custom includes
+//Custom Includes
 #include "Classes/Items/Item.hpp"
 
 // SFML
