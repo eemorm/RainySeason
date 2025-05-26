@@ -16,7 +16,7 @@ class Player // player class
 {
     private:
         sf::Sprite sprite; // current player sprite
-        float speed = 100.f; // max speed that the player can reach
+        float speed = 200.f; // max speed that the player can reach
         sf::Vector2f velocity; // current player velocity
     public:
         Player() 
