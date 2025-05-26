@@ -30,7 +30,7 @@ class Player // player class
 
             sprite.setTexture(texture);
             sprite.setScale(32.f, 32.f); // Make it 32x32
-            sprite.setPosition(0.f, 0.f);
+            sprite.setPosition(200.f, 200.f);
         } // constructor
         ~Player() {} // deconstructor
         // ********************
