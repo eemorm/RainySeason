@@ -34,10 +34,10 @@ class Map
             tileTextures['W'].loadFromFile("../assets/tiles/water.png"); // Water
 
             tilemap.clear(); // clear tilemap before
-            for (int y = 0; y < j.size(); ++y)
+            for (size_t y = 0; y < j.size(); ++y)
             {
                 std::vector<Tile> row;
-                for (int x = 0; x < j[y].size(); ++x)
+                for (size_t x = 0; x < j[y].size(); ++x)
                 {
                     char type = j[y][x].get<std::string>()[0];
                     Tile tile;
