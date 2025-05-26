@@ -19,7 +19,7 @@ class Inventory // declaring inventory class
 {
     private:
         std::vector<Item> items; // declaring list of items of type Item class
-        int capacity; // max amount of items that can be held
+        int capacity; // max amount of items that can be held, i.e. amount of slots
     public:
         Inventory() {} // constructor
         ~Inventory() {} // deconstructor
