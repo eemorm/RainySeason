@@ -31,7 +31,7 @@ int main()
     std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl; // print out current working directory
 
     Map map; // declare instance of map
-    if (!map.loadFromFile("STORM - a custom map loader for Rainy Season/map.json", 32)) // if cannot load from file
+    if (!map.loadFromFile("src/STORM - a custom map loader for Rainy Season/map.json", 32)) // if cannot load from file
     {
         std::cerr << "Failed to load map\n"; // send
         return -1;                           // error

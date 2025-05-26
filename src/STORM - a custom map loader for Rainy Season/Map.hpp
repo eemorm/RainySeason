@@ -30,8 +30,8 @@ class Map
             file >> j;
 
             // declare each different letter in the json to the tile it matches
-            tileTextures['G'].loadFromFile("../assets/tiles/grass.png"); // Grass
-            tileTextures['W'].loadFromFile("../assets/tiles/water.png"); // Water
+            tileTextures['G'].loadFromFile("assets/tiles/grass.png"); // Grass
+            tileTextures['W'].loadFromFile("assets/tiles/water.png"); // Water
 
             tilemap.clear(); // clear tilemap before
             for (size_t y = 0; y < j.size(); ++y)
