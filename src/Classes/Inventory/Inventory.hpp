@@ -1,7 +1,7 @@
 #pragma once
 
 //custom includes
-#include "Item.hpp"
+#include "Classes/Items/Item.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -15,34 +15,32 @@
 #include <string>
 #include <vector>
 
-class Inventory //declaring inventory class
+class Inventory // declaring inventory class
 {
     private:
-        std::vector<Item> items; //declaring list of items of type Item class
-        int capacity; //max amount of items that can be held
+        std::vector<Item> items; // declaring list of items of type Item class
+        int capacity; // max amount of items that can be held
     public:
-        Inventory() {} //constructor
-        ~Inventory() {} //deconstructor
-
-        //setters and getters
-        std::vector getItems() {return items;} //returns list of items
-        void setItems(std::vector i) {items = i;}
-        //following functions are for dealing with items in the inventory
-        void insertItem(const Item& newItem, int index) //adds newItem to the list at index 
+        Inventory() {} // constructor
+        ~Inventory() {} // deconstructor
+        // ********************
+        // setters and getters
+        std::vector<Item> getItems() {return items;} // returns list of items
+        void setItems(std::vector<Item> i) {items = i;} // sets items in the inventory
+        int getCapacity() {return capacity;} // returns capacity of the inventory
+        void setCapacity(int c) {capacity = c;} // sets capacity to c
+        // ********************
+        // following functions are for dealing with items in the inventory
+        void insertItem(Item &newItem, int index) // adds newItem to the list at index 
         {
             items.insert(items.begin() + index, newItem);
         }
-
-        void addItem(const Item& newItem) //adds newItem to the end of the list
+        void addItem(Item &newItem) // adds newItem to the end of the list
         {
             items.push_back(newItem);
         }
-
-        void removeItem(int index) //removes item at certain index from the list
+        void removeItem(int index) // removes item at certain index from the list
         {
             items.erase(items.begin() + index);
         }
-
-        int getCapacity() {return capacity;} //returns capacity of the inventory
-        void setCapacity(int c) {capacity = c;} //sets capacity to c
 }; 
