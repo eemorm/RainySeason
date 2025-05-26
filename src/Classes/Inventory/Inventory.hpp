@@ -1,5 +1,8 @@
 #pragma once
 
+//custom includes
+#include "Item.hpp"
+
 // SFML
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
