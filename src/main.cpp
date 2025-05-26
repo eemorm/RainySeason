@@ -22,6 +22,8 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close); // declare window
 
+    window.setFramerateLimit(60); // set fps limit to avoid too much GPU stress
+
     sf::Clock clock; // declare for delta time
 
     Player player; // declare player class instance
