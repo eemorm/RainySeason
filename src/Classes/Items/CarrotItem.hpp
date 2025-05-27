@@ -14,8 +14,8 @@ class CarrotItem : Item //defining CarrotItem class
             setCategory("Plant"); //the carrot is a type of plant
             setDescription(""); //ADD IN LATER
             setRarity(""); //ADD IN  LATER
-            setIsStackable = true; //allowing carrots to be stacked
-            setMaxStackable = 999; //can stack 999 carrots in one inventory slot
+            setIsStackable(true); //allowing carrots to be stacked
+            setMaxStackable(999); //can stack 999 carrots in one inventory slot
             //setIsSellable = true; not sure if we should add this yet
             //setSellPrice = 4; ^^
             //setIsTradable = true;
