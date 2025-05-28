@@ -33,11 +33,17 @@ class Inventory // declaring inventory class
         // following functions are for dealing with items in the inventory
         void insertItem(Item &newItem, int index) // adds newItem to the list at index 
         {
-            items.insert(items.begin() + index, newItem);
+            if (items.size() + 1 <= capacity)
+            {
+                items.insert(items.begin() + index, newItem);
+            }
         }
         void addItem(Item &newItem) // adds newItem to the end of the list
         {
-            items.push_back(newItem);
+            if (items.size() + 1 <= capacity)
+            {
+                items.push_back(newItem);
+            }
         }
         void removeItem(int index) // removes item at certain index from the list
         {
