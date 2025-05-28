@@ -9,10 +9,6 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-// ImGUI
-#include "ImGUI/imgui.h"
-#include "ImGUI/imgui-SFML.h"
-
 // Standard Output
 #include <iostream>
 #include <optional>
@@ -27,8 +23,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT}), "Rainy Season", sf::Style::Close); // declare window
 
     window.setFramerateLimit(60); // set fps limit to avoid too much GPU stress
-
-    ImGui::SFML::Init(window);
 
     sf::Clock clock; // declare for delta time
 
