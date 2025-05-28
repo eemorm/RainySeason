@@ -69,11 +69,11 @@ class Player // player class
         {
             for (auto it = groundItems.begin(); it != groundItems.end();) 
             {
-                float dx = it->position.x - sprite.getPosition().x;
-                float dy = it->position.y - sprite.getPosition().y;
+                float dx = it->getPosition().x - sprite.getPosition().x;
+                float dy = it->getPosition().y - sprite.getPosition().y;
                 if (dx*dx + dy*dy <= radius * radius) 
                 {
-                    playerInventory.addItem(it->item);
+                    playerInventory.addItem(it->getItem());
                     it = groundItems.erase(it);
                 } 
                 else 

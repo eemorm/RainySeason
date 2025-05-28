@@ -1,5 +1,5 @@
 // Custom Includes
-#include "Structs/Items/GroundItem.hpp"
+#include "Classes/Items/GroundItem.hpp"
 
 // Standard Libraries
 #include <iostream>

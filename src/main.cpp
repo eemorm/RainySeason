@@ -1,6 +1,7 @@
 //Custom Includes
 #include "Classes/Player/Player.hpp"
 #include "STORM - a custom map loader for Rainy Season/Map.hpp"
+#include "Textures/Textures.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -38,6 +39,8 @@ int main()
     }
 
     sf::View view(sf::FloatRect(0.f, 0.f, SCREEN_WIDTH, SCREEN_HEIGHT)); // set camera view
+
+    textureSetup();
 
     while (window.isOpen()) // loop when the window is open
     {

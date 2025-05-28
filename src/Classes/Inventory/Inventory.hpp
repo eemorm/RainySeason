@@ -56,7 +56,12 @@ class Inventory // declaring inventory class
         }
         void dropItem(int index, sf::Vector2f dropPosition) // drops item from the inventory
         {
-            groundItems.push_back(GroundItem{items[index], dropPosition});
+            GroundItem groundItem; // set temporary item to add to the list
+
+            groundItem.setItem(items[index]);         // set
+            groundItem.setPosition(dropPosition);     // values
+
+            groundItems.push_back(groundItem); // push back item to ground items
             removeItem(index); // remove item from inventory
         }
         

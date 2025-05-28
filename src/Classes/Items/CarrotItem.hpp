@@ -1,5 +1,6 @@
 //Custom Includes
 #include "Item.hpp"
+#include "Textures/Textures.hpp"
 
 //standard i/o
 #include <iostream>
@@ -10,6 +11,7 @@ class CarrotItem : public Item //defining CarrotItem class
     public:
         CarrotItem() //constructor
         {
+            setSprite(carrot);
             setName("Carrot"); //the item name is carrot
             setCategory("Plant"); //the carrot is a type of plant
             setDescription(""); //ADD IN LATER
