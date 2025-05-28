@@ -40,7 +40,7 @@ int main()
 
     sf::View view(sf::FloatRect(0.f, 0.f, SCREEN_WIDTH, SCREEN_HEIGHT)); // set camera view
 
-    textureSetup();
+    initializeTextures(); // initialize textures
 
     while (window.isOpen()) // loop when the window is open
     {
@@ -54,7 +54,7 @@ int main()
             }      
         }
 
-        float deltaTime = clock.restart().asSeconds();
+        float deltaTime = clock.restart().asSeconds(); // start delta time
 
         player.handleInput(); // handle input
         player.update(deltaTime); // update player location each frame

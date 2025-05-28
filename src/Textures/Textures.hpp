@@ -15,4 +15,4 @@ extern sf::Sprite carrotsprout;
 extern sf::Sprite carrotgrown;
 
 sf::Texture loadTexture(const std::string &filepath);
-void textureSetup();
+void initializeTextures();

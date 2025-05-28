@@ -25,7 +25,7 @@ sf::Texture loadTexture(const std::string &filepath)
     return tex;
 }
 
-void textureSetup()
+void initializeTextures()
 {
     carrot.setTexture(loadTexture("assets/Plants/carrot.png"));
     carrotseedground.setTexture(loadTexture("assets/Plants/carrotseedground.png"));
