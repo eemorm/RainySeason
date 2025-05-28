@@ -24,4 +24,5 @@ srcs = [
 executable('RainySeason',
            srcs + imgui_srcs + imgui_sfml_srcs,
            dependencies: [sfml_dep, gl_dep],
-           install : true)
+           install : true,
+           include_directories: ['src'])

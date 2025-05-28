@@ -11,6 +11,12 @@
 // Standard Libraries
 #include <iostream>
 #include <string>
+#include <filesystem>
+
+sf::Sprite carrot;
+sf::Sprite carrotseedground;
+sf::Sprite carrotsprout;
+sf::Sprite carrotgrown;
 
 sf::Texture loadTexture(const std::string &filepath) 
 {
@@ -19,15 +25,10 @@ sf::Texture loadTexture(const std::string &filepath)
     return tex;
 }
 
-extern sf::Sprite carrot;
-extern sf::Sprite carrotseedground;
-extern sf::Sprite carrotsprout;
-extern sf::Sprite carrotgrown;
-
 void textureSetup()
 {
-    carrot.setTexture(loadTexture("assets/Plants/carrot"));
-    carrotseedground.setTexture(loadTexture("assets/Plants/carrotseedground"));
-    carrotsprout.setTexture(loadTexture("assets/Plants/carrotsprout"));
-    carrotgrown.setTexture(loadTexture("assets/Plants/carrotgrown"));
+    carrot.setTexture(loadTexture("assets/Plants/carrot.png"));
+    carrotseedground.setTexture(loadTexture("assets/Plants/carrotseedground.png"));
+    carrotsprout.setTexture(loadTexture("assets/Plants/carrotsprout.png"));
+    carrotgrown.setTexture(loadTexture("assets/Plants/carrotgrown.png"));
 }

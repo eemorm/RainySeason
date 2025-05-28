@@ -9,10 +9,10 @@
 #include <iostream>
 #include <string>
 
+extern sf::Sprite carrot;
+extern sf::Sprite carrotseedground;
+extern sf::Sprite carrotsprout;
+extern sf::Sprite carrotgrown;
+
 sf::Texture loadTexture(const std::string &filepath);
 void textureSetup();
-
-sf::Sprite carrot;
-sf::Sprite carrotseedground;
-sf::Sprite carrotsprout;
-sf::Sprite carrotgrown;
