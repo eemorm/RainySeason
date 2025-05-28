@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-class Carrot : Plant // defines the Carrot class
+class Carrot : public Plant // defines the Carrot class
 {
     private:
         enum class Stage // defines the growth stages for this particular Carrot

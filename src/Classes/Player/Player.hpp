@@ -1,5 +1,8 @@
 #pragma once
 
+// Custom Includes
+#include "Classes/Inventory/Inventory.hpp"
+
 // SFML
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -18,6 +21,7 @@ class Player // player class
         sf::Sprite sprite; // current player sprite
         float speed = 200.f; // max speed that the player can reach
         sf::Vector2f velocity; // current player velocity
+        Inventory playerInventory; // player inventory
     public:
         Player() 
         {
@@ -61,4 +65,21 @@ class Player // player class
         {
             window.draw(sprite);
         }
+        void pickupItem(float radius) 
+        {
+            for (auto it = groundItems.begin(); it != groundItems.end();) 
+            {
+                float dx = it->position.x - sprite.getPosition().x;
+                float dy = it->position.y - sprite.getPosition().y;
+                if (dx*dx + dy*dy <= radius * radius) 
+                {
+                    playerInventory.addItem(it->item);
+                    it = groundItems.erase(it);
+                } 
+                else 
+                {
+                    ++it;
+                }
+            }
+        }  
 };

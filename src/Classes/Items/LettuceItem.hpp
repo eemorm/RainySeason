@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-class LettuceItem : Item //defining LettuceItem class
+class LettuceItem : public Item //defining LettuceItem class
 {
     public:
         LettuceItem() //constructor

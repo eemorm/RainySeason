@@ -16,7 +16,8 @@ imgui_srcs = files(
 imgui_sfml_srcs = files('src/ImGUI/imgui-SFML.cpp')
 
 srcs = [
-  'src/main.cpp'
+  'src/main.cpp',
+  'src/Managers/Items/GroundItemManager.cpp'
 ]
 
 executable('RainySeason',

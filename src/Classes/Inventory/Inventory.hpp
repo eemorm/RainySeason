@@ -2,6 +2,8 @@
 
 //Custom Includes
 #include "Classes/Items/Item.hpp"
+#include "Classes/Items/CarrotItem.hpp"
+#include "Managers/Items/GroundItemManager.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -21,7 +23,10 @@ class Inventory // declaring inventory class
         std::vector<Item> items; // declaring list of items of type Item class
         int capacity; // max amount of items that can be held, i.e. amount of slots
     public:
-        Inventory() {} // constructor
+        Inventory() 
+        {
+            items.push_back(CarrotItem());
+        } // constructor
         ~Inventory() {} // deconstructor
         // ********************
         // setters and getters
@@ -49,4 +54,10 @@ class Inventory // declaring inventory class
         {
             items.erase(items.begin() + index);
         }
+        void dropItem(int index, sf::Vector2f dropPosition) // drops item from the inventory
+        {
+            groundItems.push_back(GroundItem{items[index], dropPosition});
+            removeItem(index); // remove item from inventory
+        }
+        
 }; 
