@@ -1,9 +1,9 @@
 #pragma once
 
-// custom includes
+// Custom Includes
 #include "Fish.hpp"
 
-// standard i/o
+// Standard Libraries
 #include <iostream>
 #include <string>
 
