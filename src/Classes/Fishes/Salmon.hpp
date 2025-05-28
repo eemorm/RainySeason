@@ -34,5 +34,4 @@ class Salmon : public Fish // declaring salmon class
             // setting weight to the random number
             setWeight(randomNumber);
         }
-        //****************************
 };
