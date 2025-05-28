@@ -63,7 +63,7 @@ def main():
 #include <iostream>
 #include <string>
 
-class {class_name} : Plant // defines the {class_name} class
+class {class_name} : public Plant // defines the {class_name} class
 {{
     private:
         enum class Stage // defines the growth stages for this particular {class_name}
