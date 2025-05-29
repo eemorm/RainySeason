@@ -18,7 +18,8 @@ imgui_sfml_srcs = files('src/ImGUI/imgui-SFML.cpp')
 srcs = [
   'src/main.cpp',
   'src/Managers/Items/GroundItemManager.cpp',
-  'src/Textures/Textures.cpp'
+  'src/Textures/Textures.cpp',
+  'src/UI/InventoryUI.cpp'
 ]
 
 executable('RainySeason',

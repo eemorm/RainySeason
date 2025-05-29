@@ -1,3 +1,5 @@
+#pragma once
+
 // Custom Includes
 #include "Classes/Items/GroundItem.hpp"
 

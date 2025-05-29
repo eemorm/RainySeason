@@ -1,3 +1,5 @@
+#pragma once
+
 // SFML
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -9,10 +11,9 @@
 #include <iostream>
 #include <string>
 
-extern sf::Sprite carrot;
-extern sf::Sprite carrotseedground;
-extern sf::Sprite carrotsprout;
-extern sf::Sprite carrotgrown;
+extern sf::Texture carrotTexture;
+extern sf::Texture carrotseedgroundTexture;
+extern sf::Texture carrotsproutTexture;
+extern sf::Texture carrotgrownTexture;
 
-sf::Texture loadTexture(const std::string &filepath);
 void initializeTextures();

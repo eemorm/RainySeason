@@ -13,22 +13,22 @@
 #include <string>
 #include <filesystem>
 
-sf::Sprite carrot;
-sf::Sprite carrotseedground;
-sf::Sprite carrotsprout;
-sf::Sprite carrotgrown;
-
-sf::Texture loadTexture(const std::string &filepath) 
-{
-    sf::Texture tex;
-    tex.loadFromFile(filepath);
-    return tex;
-}
+sf::Texture carrotTexture;
+sf::Texture carrotseedgroundTexture;
+sf::Texture carrotsproutTexture;
+sf::Texture carrotgrownTexture;
 
 void initializeTextures()
 {
-    carrot.setTexture(loadTexture("assets/Plants/carrot.png"));
-    carrotseedground.setTexture(loadTexture("assets/Plants/carrotseedground.png"));
-    carrotsprout.setTexture(loadTexture("assets/Plants/carrotsprout.png"));
-    carrotgrown.setTexture(loadTexture("assets/Plants/carrotgrown.png"));
+    if (!carrotTexture.loadFromFile("assets/Plants/carrot.png"))
+        std::cerr << "Failed to load carrot texture\n";
+
+    if (!carrotseedgroundTexture.loadFromFile("assets/Plants/carrotseedground.png"))
+        std::cerr << "Failed to load carrot texture\n";
+
+    if (!carrotsproutTexture.loadFromFile("assets/Plants/carrotsprout.png"))
+        std::cerr << "Failed to load carrot texture\n";
+
+    if (!carrotgrownTexture.loadFromFile("assets/Plants/carrotgrown.png"))
+        std::cerr << "Failed to load carrot texture\n";
 }

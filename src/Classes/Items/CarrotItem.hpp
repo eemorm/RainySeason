@@ -11,7 +11,9 @@ class CarrotItem : public Item //defining CarrotItem class
     public:
         CarrotItem() //constructor
         {
-            setSprite(carrot);
+            sf::Sprite tempSprite;
+            tempSprite.setTexture(carrotTexture);
+            setSprite(tempSprite);
             setName("Carrot"); //the item name is carrot
             setCategory("Plant"); //the carrot is a type of plant
             setDescription(""); //ADD IN LATER
