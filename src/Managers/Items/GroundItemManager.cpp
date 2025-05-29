@@ -1,5 +1,6 @@
 // Custom Includes
 #include "Classes/Items/GroundItem.hpp"
+#include "Classes/Items/CarrotItem.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -12,4 +13,9 @@
 #include <iostream>
 #include <vector>
 
-extern std::vector<GroundItem> groundItems;
+std::vector<GroundItem> groundItems;
+
+void setTestGroundItems()
+{
+    groundItems.push_back(GroundItem(CarrotItem(), {100, 100}));
+}

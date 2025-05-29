@@ -15,6 +15,7 @@
 #include <vector>
 
 extern std::vector<Slot> slots;
+extern sf::Font font;
 
 std::vector<sf::Vector2f> calculateSlotPositions(
     int screenWidth,
@@ -33,5 +34,7 @@ void initializeInventoryVisual(
     float slotSpacing,
     float edgeSpacing
 );
+
+void updateInventoryVisual();
 
 std::vector<Slot>& getSlots();

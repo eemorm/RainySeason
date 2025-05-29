@@ -23,11 +23,12 @@ class Slot
         Slot() 
         {
             background.setSize(sf::Vector2f(size, size));
-            sprite.setScale(sf::Vector2f(size, size));
             background.setFillColor(sf::Color(100, 100, 100, 200));
             background.setOutlineColor(sf::Color::White);
             background.setOutlineThickness(2);
-        }
+            sprite = sf::Sprite(); // empty by default
+            quantity = 0;
+        }    
         ~Slot() {}
         // ********************
         sf::Sprite& getSprite() { return sprite; }
@@ -40,4 +41,8 @@ class Slot
         void setSize(float s) { size = s; }
         sf::Vector2f getPosition() { return position; }
         void setPosition(sf::Vector2f p) { position = p; background.setPosition(position); sprite.setPosition(position); }
+        // ********************
+        void clearSprite() { sprite = sf::Sprite(); }
+        bool hasValidSprite() const { return sprite.getTexture() != nullptr; }
+
 };

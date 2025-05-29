@@ -2,6 +2,7 @@
 #include "InventoryUI.hpp"
 #include "Classes/Inventory/Slot.hpp"
 #include "Textures/Textures.hpp"
+#include "Global/Inventory/PlayerInventory.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -15,6 +16,7 @@
 #include <vector>
 
 std::vector<Slot> slots;
+sf::Font font;
 
 std::vector<sf::Vector2f> calculateSlotPositions(
     int screenWidth,
@@ -50,6 +52,9 @@ void initializeInventoryVisual(
     float edgeSpacing
 )
 {
+    if (!font.loadFromFile("currentgamefont.ttf")) {
+        std::cerr << "Failed to load font!\n";
+    }
     slots.clear(); // Optional: reset if re-initializing
     auto positions = calculateSlotPositions(screenWidth, screenHeight, numSlots, slotSize, slotSpacing, edgeSpacing);
 
@@ -65,6 +70,41 @@ void initializeInventoryVisual(
         slot.setSprite(sprite);
         slot.setPosition(pos);
         slots.push_back(slot);
+    }
+}
+
+void updateInventoryVisual()
+{
+    std::vector<Item> items = playerInventory.getItems();
+
+    for (size_t i = 0; i < slots.size(); ++i)
+    {
+        if (i < items.size())
+        {
+            sf::Sprite sprite = items[i].getSprite();
+
+            // Skip if sprite has no texture
+            if (sprite.getTexture() == nullptr)
+            {
+                slots[i].clearSprite();
+                continue;
+            }
+
+            auto texSize = sprite.getTexture()->getSize();
+            float slotSize = slots[i].getSize();
+            float scaleX = slotSize / static_cast<float>(texSize.x);
+            float scaleY = slotSize / static_cast<float>(texSize.y);
+            sprite.setScale(scaleX, scaleY);
+
+            sprite.setPosition(slots[i].getPosition());
+            slots[i].setSprite(sprite);
+            slots[i].setQuantity(items[i].getCurrentStack()); // optional
+        }
+        else
+        {
+            slots[i].clearSprite();
+            slots[i].setQuantity(0); // Clear stack size too
+        }
     }
 }
 

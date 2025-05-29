@@ -3,6 +3,8 @@
 #include "STORM - a custom map loader for Rainy Season/Map.hpp"
 #include "Textures/Textures.hpp"
 #include "UI/InventoryUI.hpp"
+#include "Global/Inventory/PlayerInventory.hpp"
+#include "Managers/Items/GroundItemManager.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -32,6 +34,10 @@ int main() // main function, where the flow of the game starts
 
     std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl; // print out current working directory
 
+    if (!font.loadFromFile("currentgamefont.ttf")) {
+        std::cerr << "Failed to load font!\n";
+    }
+
     Map map; // declare instance of map
     if (!map.loadFromFile("src/STORM - a custom map loader for Rainy Season/map.json", 32)) // if cannot load from file
     {
@@ -42,6 +48,8 @@ int main() // main function, where the flow of the game starts
     sf::View view(sf::FloatRect(0.f, 0.f, SCREEN_WIDTH, SCREEN_HEIGHT)); // set camera view
 
     initializeTextures(); // initialize textures
+
+    setTestGroundItems();
 
     initializeInventoryVisual(SCREEN_WIDTH, SCREEN_HEIGHT, 9, 64.0f, 12.0f, 20.0f); // initialize inventory UI with the correct values
 
@@ -54,7 +62,36 @@ int main() // main function, where the flow of the game starts
             if (event.type == sf::Event::Closed) // check if window close pressed
             {
                 window.close(); // close window
-            }      
+            }     
+            if (event.type == sf::Event::MouseButtonPressed &&
+                event.mouseButton.button == sf::Mouse::Right)
+            {
+                // Get mouse position in UI (default) view
+                window.setView(window.getDefaultView());
+                sf::Vector2f mousePos = window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y});
+
+                for (Slot& slot : getSlots())
+                {
+                    if (slot.getBackground().getGlobalBounds().contains(mousePos) && slot.getQuantity() > 0)
+                    {
+                        // Get item to drop
+                        Item itemToDrop = slot.get(); // You may need to use getItemRef() or similar
+                        sf::Vector2f playerPos = player.getPosition();
+            
+                        // Drop item on the ground at player's position
+                        groundItems.emplace_back(itemToDrop, playerPos);
+            
+                        // Remove 1 from slot stack
+                        slot.setQuantity(slot.getQuantity() - 1);
+                        if (slot.getQuantity() <= 0)
+                        {
+                            slot.clearSprite();
+                        }
+            
+                        break; // Only process 1 slot
+                    }
+                }
+            }            
         }
 
         float deltaTime = clock.restart().asSeconds(); // start delta time
@@ -69,8 +106,33 @@ int main() // main function, where the flow of the game starts
         window.clear(sf::Color(127, 127, 127)); // turn window to grey
         map.draw(window); // draw map
         player.render(window); // render player on window over map
+        for (auto item : groundItems) // for every item in ground items
+        {
+            item.displayItemSpriteOnGround(window); // display the item on the ground, drawn on the window
+        }
+        player.pickupItem(32); // try to pick any items in the player's radius
         window.setView(window.getDefaultView()); // set view so that the slots can be drawn in the right place
-        for (auto& slot : getSlots()) { window.draw(slot.getBackground()); window.draw(slot.getSprite()); } // for every slot in the vector draw the slot at the appropriate position, first the background and then the sprite and number
+        updateInventoryVisual(); // update the inventory and prep it to be displayed
+        for (Slot& slot : getSlots()) // for slot in slots
+        {
+            window.draw(slot.getBackground()); // draw the background first
+
+            if (slot.getSprite().getTexture() != nullptr) // only if there is a sprite
+                window.draw(slot.getSprite()); // draw the sprite
+
+            if (slot.getQuantity() > 1) // only show the quantity text if there is more than 1 item
+            {
+                sf::Text text; // declare text
+                text.setFont(font); // set the font
+                text.setString(std::to_string(slot.getQuantity())); // set the text to the number of the quantity
+                text.setCharacterSize(14); // set font size
+                text.setFillColor(sf::Color::White); // text color set
+                sf::FloatRect textBounds = text.getLocalBounds(); // get the local bounds of the text
+                text.setOrigin(textBounds.width, 0); // right-align the text
+                text.setPosition(slot.getPosition().x + slot.getSize() - 4, slot.getPosition().y + 2); // set the text position
+                window.draw(text); // and finally draw the text
+            }
+        }
         window.display(); // display output
     }
     

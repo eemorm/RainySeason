@@ -2,6 +2,7 @@
 
 // Custom Includes
 #include "Classes/Inventory/Inventory.hpp"
+#include "Global/Inventory/PlayerInventory.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -21,7 +22,6 @@ class Player // player class
         sf::Sprite sprite; // current player sprite
         float speed = 200.f; // max speed that the player can reach
         sf::Vector2f velocity; // current player velocity
-        Inventory playerInventory; // player inventory
     public:
         Player() 
         {

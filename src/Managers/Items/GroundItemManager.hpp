@@ -7,4 +7,6 @@
 #include <iostream>
 #include <vector>
 
-std::vector<GroundItem> groundItems;
+extern std::vector<GroundItem> groundItems;
+
+void setTestGroundItems();

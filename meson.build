@@ -19,7 +19,8 @@ srcs = [
   'src/main.cpp',
   'src/Managers/Items/GroundItemManager.cpp',
   'src/Textures/Textures.cpp',
-  'src/UI/InventoryUI.cpp'
+  'src/UI/InventoryUI.cpp',
+  'src/Global/Inventory/PlayerInventory.cpp'
 ]
 
 executable('RainySeason',

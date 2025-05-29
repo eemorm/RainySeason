@@ -1,3 +1,5 @@
+#pragma once
+
 //Custom Includes
 #include "Item.hpp"
 #include "Textures/Textures.hpp"
