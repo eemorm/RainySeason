@@ -13,4 +13,4 @@
 // Standard Output
 #include <iostream>
 
-Inventory playerInventory(9);
+Inventory playerInventory(15);

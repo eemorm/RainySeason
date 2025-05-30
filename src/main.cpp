@@ -49,9 +49,9 @@ int main() // main function, where the flow of the game starts
 
     initializeTextures(); // initialize textures
 
-    setTestGroundItems();
+    setTestGroundItems(); // write test items to the ground to test item
 
-    initializeInventoryVisual(SCREEN_WIDTH, SCREEN_HEIGHT, 9, 64.0f, 12.0f, 20.0f); // initialize inventory UI with the correct values
+    initializeInventoryVisual(SCREEN_WIDTH, SCREEN_HEIGHT, playerInventory.getCapacity(), 64.0f, 12.0f, 20.0f); // initialize inventory UI with the correct values
 
     while (window.isOpen()) // loop when the window is open
     {
