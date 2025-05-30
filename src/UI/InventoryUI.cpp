@@ -67,7 +67,7 @@ void initializeInventoryVisual(
         float scaleX = slotSize / static_cast<float>(texSize.x);
         float scaleY = slotSize / static_cast<float>(texSize.y);
         sprite.setScale(scaleX, scaleY);
-        slot.setSprite(sprite);
+        slot.getItem().setSprite(sprite);
         slot.setPosition(pos);
         slots.push_back(slot);
     }
@@ -86,7 +86,8 @@ void updateInventoryVisual()
             // Skip if sprite has no texture
             if (sprite.getTexture() == nullptr)
             {
-                slots[i].clearSprite();
+                sf::Sprite sprite;
+                slots[i].getItem().setSprite(sprite);
                 continue;
             }
 
@@ -97,13 +98,14 @@ void updateInventoryVisual()
             sprite.setScale(scaleX, scaleY);
 
             sprite.setPosition(slots[i].getPosition());
-            slots[i].setSprite(sprite);
-            slots[i].setQuantity(items[i].getCurrentStack()); // optional
+            slots[i].getItem().setSprite(sprite);
+            slots[i].getItem().setCurrentStack(items[i].getCurrentStack()); // optional
         }
         else
         {
-            slots[i].clearSprite();
-            slots[i].setQuantity(0); // Clear stack size too
+            sf::Sprite sprite;
+            slots[i].getItem().setSprite(sprite);
+            slots[i].getItem().setCurrentStack(0); // Clear stack size too
         }
     }
 }

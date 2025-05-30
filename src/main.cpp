@@ -64,32 +64,22 @@ int main() // main function, where the flow of the game starts
                 window.close(); // close window
             }     
             if (event.type == sf::Event::MouseButtonPressed &&
-                event.mouseButton.button == sf::Mouse::Right)
+                event.mouseButton.button == sf::Mouse::Right) // if right mouse button pressed
             {
-                // Get mouse position in UI (default) view
-                window.setView(window.getDefaultView());
-                sf::Vector2f mousePos = window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y});
+                window.setView(window.getDefaultView()); // set to UI view
+                sf::Vector2f mousePos = window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}); // get mouse coordinates
 
-                for (Slot& slot : getSlots())
+                int index = 0; // set an index variable to 0 to keep track of the index of the slot
+                for (Slot& slot : getSlots()) // for slot in slots, passing by reference to keep the actual slot
                 {
-                    if (slot.getBackground().getGlobalBounds().contains(mousePos) && slot.getQuantity() > 0)
-                    {
-                        // Get item to drop
-                        Item itemToDrop = slot.get(); // You may need to use getItemRef() or similar
-                        sf::Vector2f playerPos = player.getPosition();
-            
-                        // Drop item on the ground at player's position
-                        groundItems.emplace_back(itemToDrop, playerPos);
-            
-                        // Remove 1 from slot stack
-                        slot.setQuantity(slot.getQuantity() - 1);
-                        if (slot.getQuantity() <= 0)
-                        {
-                            slot.clearSprite();
-                        }
-            
+                    if (slot.getBackground().getGlobalBounds().contains(mousePos) && slot.getItem().getCurrentStack() > 0)
+                    {   // if stack is greater than 0 and slot has the mouse position
+                        sf::Vector2f playerPos = player.getPosition(); // get the player position
+                        playerInventory.dropItem(index, {playerPos.x, playerPos.y - 64}); // drop the item from the correct slot a bit up from the player
+                        
                         break; // Only process 1 slot
                     }
+                    index++; // add 1 to the index when the slot is not the correct one
                 }
             }            
         }
@@ -117,14 +107,14 @@ int main() // main function, where the flow of the game starts
         {
             window.draw(slot.getBackground()); // draw the background first
 
-            if (slot.getSprite().getTexture() != nullptr) // only if there is a sprite
-                window.draw(slot.getSprite()); // draw the sprite
+            if (slot.getItem().getSprite().getTexture() != nullptr) // only if there is a sprite
+                window.draw(slot.getItem().getSprite()); // draw the sprite
 
-            if (slot.getQuantity() > 1) // only show the quantity text if there is more than 1 item
+            if (slot.getItem().getCurrentStack() > 1) // only show the quantity text if there is more than 1 item
             {
                 sf::Text text; // declare text
                 text.setFont(font); // set the font
-                text.setString(std::to_string(slot.getQuantity())); // set the text to the number of the quantity
+                text.setString(std::to_string(slot.getItem().getCurrentStack())); // set the text to the number of the quantity
                 text.setCharacterSize(14); // set font size
                 text.setFillColor(sf::Color::White); // text color set
                 sf::FloatRect textBounds = text.getLocalBounds(); // get the local bounds of the text

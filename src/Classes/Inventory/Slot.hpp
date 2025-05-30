@@ -1,5 +1,8 @@
 #pragma once
 
+// Custom Includes
+#include "Classes/Items/Item.hpp"
+
 // SFML
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -14,8 +17,7 @@
 class Slot
 {
     private:
-        sf::Sprite sprite;
-        int quantity;
+        Item item;
         sf::RectangleShape background;
         float size = 64.0f;
         sf::Vector2f position;
@@ -26,23 +28,18 @@ class Slot
             background.setFillColor(sf::Color(100, 100, 100, 200));
             background.setOutlineColor(sf::Color::White);
             background.setOutlineThickness(2);
-            sprite = sf::Sprite(); // empty by default
-            quantity = 0;
         }    
         ~Slot() {}
-        // ********************
-        sf::Sprite& getSprite() { return sprite; }
-        void setSprite(sf::Sprite s) { sprite = s; }
-        int getQuantity() { return quantity; }
-        void setQuantity(int q) { quantity = q; }
+        Item& getItem() { return item; }
+        const Item& getItem() const { return item; }
+        void setItem(Item i) { item = i; }
         sf::RectangleShape getBackground() { return background; }
         void setBackground(sf::RectangleShape b) { background = b; }
         float getSize() { return size; }
         void setSize(float s) { size = s; }
         sf::Vector2f getPosition() { return position; }
-        void setPosition(sf::Vector2f p) { position = p; background.setPosition(position); sprite.setPosition(position); }
+        void setPosition(sf::Vector2f p) { position = p; background.setPosition(position); item.getSprite().setPosition(position); }
         // ********************
-        void clearSprite() { sprite = sf::Sprite(); }
-        bool hasValidSprite() const { return sprite.getTexture() != nullptr; }
+        bool hasValidSprite() { return item.getSprite().getTexture() != nullptr; }
 
 };
