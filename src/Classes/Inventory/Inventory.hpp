@@ -37,30 +37,31 @@ class Inventory // declaring inventory class
         // following functions are for dealing with items in the inventory
         void insertItem(Item newItem, int index) // adds newItem to the list at index 
         {
-            if (items.size() + 1 <= capacity)
+            if (items.size() + 1 <= capacity) // if there is space in the inventory
             {
-                items.insert(items.begin() + index, newItem);
+                items.insert(items.begin() + index, newItem); // insert the item at the given index
             }
         }
         void addItem(Item& newItem) // adds newItem to the end of the list
         {
-            for (Item& item : items)
+            for (Item& item : items) // for item in items, using pass by reference
             {
-                if (item.getName() == newItem.getName() && item.getIsStackable())
+                if (item.getName() == newItem.getName() && item.getIsStackable()) // if they are the same item and can stack
                 {
-                    item.setCurrentStack(item.getCurrentStack() + 1);
-                    return;
+                    item.setCurrentStack(item.getCurrentStack() + 1); // stack the items
+                    return; // return to end the function
                 }
             }
-            newItem.setCurrentStack(1);
-            if (items.size() + 1 <= capacity)
+            // if cannot stack
+            newItem.setCurrentStack(1); // start a new stack before checking if there is space
+            if (items.size() + 1 <= capacity) // if there is space in the inventory
             {
-                items.push_back(newItem);
+                items.push_back(newItem); // add the item to the inventory
             }
         }
         void removeItem(int index) // removes item at certain index from the list
         {
-            items.erase(items.begin() + index);
+            items.erase(items.begin() + index); // erase the item
         }
         void dropItem(int index, sf::Vector2f dropPosition) // drops item from the inventory
         {

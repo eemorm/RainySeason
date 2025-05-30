@@ -33,7 +33,7 @@ class Slot
         Item& getItem() { return item; }
         const Item& getItem() const { return item; }
         void setItem(Item i) { item = i; }
-        sf::RectangleShape getBackground() { return background; }
+        sf::RectangleShape& getBackground() { return background; }
         void setBackground(sf::RectangleShape b) { background = b; }
         float getSize() { return size; }
         void setSize(float s) { size = s; }
@@ -41,5 +41,16 @@ class Slot
         void setPosition(sf::Vector2f p) { position = p; background.setPosition(position); item.getSprite().setPosition(position); }
         // ********************
         bool hasValidSprite() { return item.getSprite().getTexture() != nullptr; }
-
+        void highlight(bool on) 
+        {
+            if (on) 
+            {
+                background.setOutlineThickness(2.f);
+                background.setOutlineColor(sf::Color::Yellow);
+            } 
+            else 
+            {
+                background.setOutlineThickness(0.f);
+            }
+        }        
 };

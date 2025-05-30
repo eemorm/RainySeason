@@ -26,10 +26,11 @@ class Item //defining the class Item
         bool isTradable; //whether it can be traded
         std::string tradeReward; //what you get in return for trading
         int currentStack = 0; //amount of said item currently held
+        bool isPlaceable; // if item can be placed
     //****we might not end up implementing isSellable or isTradable!****
     public:
         Item() {} //constructer?
-        ~Item () {} //deconstructer???
+        ~Item() {} //deconstructer???
 
         //all of the following are setters and getters
         sf::Sprite getSprite() {return sprite;}
@@ -56,4 +57,6 @@ class Item //defining the class Item
         void setTradeReward(std::string tr) {tradeReward = tr;}
         int getCurrentStack() {return currentStack;}
         void setCurrentStack(int cs) {currentStack = cs;} 
+        bool getIsPlaceable() { return isPlaceable; }
+        void setIsPlaceable(bool ip) { isPlaceable = ip; }
 };

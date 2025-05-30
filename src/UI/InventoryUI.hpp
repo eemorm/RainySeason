@@ -16,6 +16,7 @@
 
 extern std::vector<Slot> slots;
 extern sf::Font font;
+static int selectedSlotIndex = -1;
 
 std::vector<sf::Vector2f> calculateSlotPositions(
     int screenWidth,

@@ -4,7 +4,7 @@
 #include "Item.hpp"
 #include "Textures/Textures.hpp"
 
-//standard i/o
+//standard Libraries
 #include <iostream>
 #include <string>
 
