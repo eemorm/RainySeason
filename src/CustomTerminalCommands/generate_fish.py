@@ -15,10 +15,37 @@ def main():
     locations = []
     while True:
         location = input("Location: ")
-        if stage_input.lower() == 'done':
+        if location.lower() == 'done':
             break
-        parts = stage_input.strip().split()
-        locations.append(location)
+        parts = location.strip().split()
+        locations.append(parts)
+
+    print("\nEnter seasons when the fish is catchable (e.g., Fall). Type 'done' to finish.")
+    seasons = []
+    while True:
+        season = input("Season: ")
+        if season.lower() == 'done':
+            break
+        parts = season.strip().split()
+        season.append(parts)
+
+    print("\nEnter the times of day when the fish is catchable (e.g., Morning, Afternoon). Type 'done' to finish.")
+    timesCatchable = []
+    while True:
+        timeToCatch = input("Time: ")
+        if timeToCatch.lower() == 'done':
+            break
+        parts = timeToCatch.strip().split()
+        timesCatchable.append(parts)
+
+    print("\nEnter the types of weather where the fish is catchable (e.g., Cloudy, Raining). Type 'done' to finish.")
+    weathers = []
+    while True:
+        weath = input("Weather: ")
+        if weath.lower() == 'done':
+            break
+        parts = weath.strip().split()
+        timesCatchable.append(weath)
 
     output_dir = os.path.join("src", "Classes", "Fishes")
     os.makedirs(output_dir, exist_ok=True)
@@ -38,26 +65,26 @@ def main():
 #include <cstdlib>
 #include <ctime>
 
-class Salmon : public Fish // declaring salmon class
+class {class_name} : public Fish // declaing {fish_name} class
 {{
     public:
-        Salmon() // constructor
+        {class_name}() // constructor
         {{
-            setName("Salmon"); // setting name to Salmon
-            setLocation({"River", "Ocean"}); // can be found in rivers and oceans
-            setDifficulty("Easy"); // easy to catch
-            setSeason({"Fall"}); // can be caught in fall
-            setTimeOfDay({"Morning", "Afternoon"}); // can be caught morning or afternoon
-            setWeather({"Cloudy", "Raining"}); // can be caught when cloudy or raining
+            setName("{fish_name}"); // setting name to {fish_name}
+            setLocation({locations}); // can be found in {locations}
+            setDifficulty("{difficulty}"); // {difficulty} to catch
+            setSeason({seasons}); // can be caught in {seasons}
+            setTimeOfDay({timesCatchable}); // can be caught during {timesCatchable}
+            setWeather({weathers}); // can be caught when {weathers}
         }}
-        ~Salmon() {{}} // deconstructor
+        ~{class_name}() {{}} // deconstructor
         //**************************
         void generateRandomWeight()
         {{
             // seeding random number generator 
             srand(time(0));
             // generating random number
-            int randomNumber = 8 + (rand() % (12 - 8 + 1));
+            int randomNumber = {min_weight} + (rand() % ({max_weight} - {min_weight} + 1));
             // setting weight to the random number
             setWeight(randomNumber);
         }}
