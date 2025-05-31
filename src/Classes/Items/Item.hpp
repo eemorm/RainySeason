@@ -7,9 +7,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-// Standard Output
+// Standard Libraries
 #include <iostream>
 #include <string>
+#include <memory>
 
 class Item //defining the class Item
 {
@@ -59,4 +60,5 @@ class Item //defining the class Item
         void setCurrentStack(int cs) {currentStack = cs;} 
         bool getIsPlaceable() { return isPlaceable; }
         void setIsPlaceable(bool ip) { isPlaceable = ip; }
+        // ********************
 };

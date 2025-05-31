@@ -61,7 +61,16 @@ class Inventory // declaring inventory class
         }
         void removeItem(int index) // removes item at certain index from the list
         {
-            items.erase(items.begin() + index); // erase the item
+            items[index].setCurrentStack(items[index].getCurrentStack() - 1); // erase 1 item
+
+            if (items[index].getCurrentStack() <= 0) // if item stack is no more
+            {
+                items.erase(items.begin() + index); // fully remove the stack from the inventory
+            }
+        }
+        void removeItemStack(int index) // removes item stack at certain index from the list
+        {
+            items.erase(items.begin() + index); // erase item stack
         }
         void dropItem(int index, sf::Vector2f dropPosition) // drops item from the inventory
         {

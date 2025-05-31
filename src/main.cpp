@@ -5,6 +5,8 @@
 #include "UI/InventoryUI.hpp"
 #include "Global/Inventory/PlayerInventory.hpp"
 #include "Managers/Items/GroundItemManager.hpp"
+#include "Global/Global.hpp"
+#include "Classes/Items/PlaceableItem.hpp"
 
 // SFML
 #include <SFML/Audio.hpp>
@@ -17,6 +19,8 @@
 #include <iostream>
 #include <optional>
 #include <filesystem>
+#include <vector>
+#include <memory>
 
 // Screen Constants
 const int SCREEN_WIDTH = 1366;
@@ -93,21 +97,64 @@ int main() // main function, where the flow of the game starts
                 window.setView(window.getDefaultView()); // set to the UI view
                 sf::Vector2f mousePos = window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}); // set the mouse position to coordinates
 
-                for (int i = 0; i < slots.size(); ++i)  // for slot in slots
+                bool mouseOverUI = false;
+                for (Slot& slot : getSlots())
                 {
-                    if (slots[i].getBackground().getGlobalBounds().contains(mousePos)) // if mouse in the slot
+                    if (slot.getBackground().getGlobalBounds().contains(mousePos))
                     {
-                        if (selectedSlotIndex != -1 && selectedSlotIndex != i) // if selected slot is not the current and at least one is selected
-                            slots[selectedSlotIndex].highlight(false); // unhighlight previous slot
-                
-                        if (slots[i].getItem().getCurrentStack() > 0) // if there is an item in the slot
-                        {
-                            selectedSlotIndex = i; // set new slot
-                            slots[i].highlight(true); // highlight current slot
-                        }
-                        break; // leave the loop
+                        mouseOverUI = true;
+                        break;
                     }
-                }                
+                }
+
+                if (mouseOverUI)
+                {
+                    for (int i = 0; i < slots.size(); ++i)  // for slot in slots
+                    {
+                        if (slots[i].getBackground().getGlobalBounds().contains(mousePos)) // if mouse in the slot
+                        {
+                            if (selectedSlotIndex != -1 && selectedSlotIndex != i) // if selected slot is not the current and at least one is selected
+                                slots[selectedSlotIndex].highlight(false); // unhighlight previous slot
+                    
+                            if (slots[i].getItem().getCurrentStack() > 0) // if there is an item in the slot
+                            {
+                                selectedSlotIndex = i; // set new slot
+                                slots[i].highlight(true); // highlight current slot
+                            }
+                            break; // leave the loop
+                        }
+                    }
+                }
+                else if (!mouseOverUI && selectedSlotIndex != -1)
+                {
+                    auto& item = slots[selectedSlotIndex].getItem();
+
+                    std::cout << "Current Stack: " << item.getCurrentStack() << "\n";
+                    std::cout << "Is Placeable: " << item.getIsPlaceable() << "\n";
+
+                    if (item.getCurrentStack() > 0 && item.getIsPlaceable()) 
+                    {
+                        std::cout << "Item is placeable yay" << std::endl;
+                        // ask the item to create and return its entity
+                        PlaceableItem& placeableItem = static_cast<PlaceableItem&>(item);
+                        auto placedEntity = placeableItem.place(mousePos);
+
+                        if (placedEntity) // successfully created
+                        {
+                            placedEntities.push_back(std::move(placedEntity)); // store it
+
+                            // remove one from inventory
+                            playerInventory.removeItem(selectedSlotIndex);
+
+                            // clear selection if now empty
+                            if (playerInventory.getItems()[selectedSlotIndex].getCurrentStack() == 0)
+                            {
+                                slots[selectedSlotIndex].highlight(false);
+                                selectedSlotIndex = -1;
+                            }
+                        }
+                    }
+                }   
             }    
         }
 
@@ -128,6 +175,10 @@ int main() // main function, where the flow of the game starts
             item.displayItemSpriteOnGround(window); // display the item on the ground, drawn on the window
         }
         player.pickupItem(32); // try to pick any items in the player's radius
+        for (auto& entity : placedEntities)
+        {
+            entity->draw(window);
+        }
         window.setView(window.getDefaultView()); // set view so that the slots can be drawn in the right place
         updateInventoryVisual(); // update the inventory and prep it to be displayed
         int i = 0; // set variable to keep track of which slot the loop is on so that it can be compared to the selected slot index

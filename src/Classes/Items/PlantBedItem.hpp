@@ -1,20 +1,23 @@
 #pragma once
 
 //Custom Includes
-#include "Item.hpp"
+#include "PlaceableItem.hpp"
 #include "Textures/Textures.hpp"
 #include "Classes/Plants/Plant.hpp"
+#include "Classes/Entities/World-Placed/Garden/PlantBedEntity.hpp"
+#include "Classes/Entities/World-Placed/PlaceableEntity.hpp"
+#include "Global/Global.hpp"
 
 //standard Libraries
 #include <iostream>
 #include <string>
+#include <vector>
+#include <memory>
 
-class PlantBedItem : public Item //defining PlantBedItem class
+class PlantBedItem : public PlaceableItem //defining PlantBedItem class
 {
     private:
-        Plant plant;
         sf::Vector2f size;
-        int rotation;
     public:
         PlantBedItem(sf::Vector2f s) //constructor
         {
@@ -30,18 +33,10 @@ class PlantBedItem : public Item //defining PlantBedItem class
             //setSellPrice = 4; ^^
             //setIsTradable = true;
             //setTradeReward = ("");
-            setIsPlaceable(true);
+            setIsPlaceable(true); // allow plant bed to be placed
             size = s;
         }
         ~PlantBedItem() {} //deconstructor
-        // ********************
-        sf::Vector2f getSize() { return size; }       // getters
-        void setSize(sf::Vector2f s) { size = s; }    // and
-        int getRotation() { return rotation; }        // setters
-        void setRotation(int r) { rotation = r; }
-        Plant getPlant() { return plant; }
-        void setPlant(Plant p) { plant = p; }
-        // ********************
-        void rotateClockwise() { rotation = (rotation + 90) % 360; }
-        void rotateCounterClockwise() { rotation = (rotation + 270) % 360; }
+        //********************
+        std::unique_ptr<PlaceableEntity> place(sf::Vector2f mousePos) override { return std::make_unique<PlantBedEntity>(size, mousePos); }
 };
